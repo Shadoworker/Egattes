@@ -1,0 +1,158 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/2685.jpg" type="Texture" id=1]
+[ext_resource path="res://assets/triangle.png" type="Texture" id=2]
+[ext_resource path="res://assets/area.png" type="Texture" id=3]
+[ext_resource path="res://assets/pulser.png" type="Texture" id=4]
+[ext_resource path="res://assets/egattes.png" type="Texture" id=5]
+[ext_resource path="res://actor.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 35.9558, 34.7557 )
+
+[node name="Game" type="Node2D"]
+
+[node name="backgound" type="Node2D" parent="."]
+
+[node name="sand1" type="Sprite" parent="backgound"]
+position = Vector2( 296.25, 221.816 )
+texture = ExtResource( 1 )
+
+[node name="sand2" type="Sprite" parent="backgound"]
+position = Vector2( 300.75, 665.066 )
+texture = ExtResource( 1 )
+
+[node name="sand3" type="Sprite" parent="backgound"]
+position = Vector2( 300.75, 1101.57 )
+texture = ExtResource( 1 )
+
+[node name="triangle" type="Node2D" parent="."]
+
+[node name="triangle" type="Sprite" parent="triangle"]
+position = Vector2( 287.25, 136.569 )
+scale = Vector2( 0.76, 0.76 )
+texture = ExtResource( 2 )
+
+[node name="area" type="Node2D" parent="."]
+
+[node name="area" type="Sprite" parent="area"]
+position = Vector2( 287.25, 159.069 )
+scale = Vector2( 0.92, 0.92 )
+texture = ExtResource( 3 )
+
+[node name="pulser" type="Node2D" parent="."]
+position = Vector2( 33, 786 )
+scale = Vector2( 0.92, 0.92 )
+
+[node name="pulser" type="Sprite" parent="pulser"]
+position = Vector2( 287.25, 159.069 )
+scale = Vector2( 0.92, 0.92 )
+texture = ExtResource( 4 )
+
+[node name="egattes" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="egatte1" type="Sprite" parent="egattes"]
+position = Vector2( 287.714, 75.634 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 5 )
+hframes = 9
+
+[node name="Area2D" type="Area2D" parent="egattes/egatte1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="egattes/egatte1/Area2D"]
+shape = SubResource( 1 )
+
+[node name="egatte2" type="Sprite" parent="egattes"]
+position = Vector2( 238.214, 134.134 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 5 )
+hframes = 9
+frame = 4
+
+[node name="Area2D" type="Area2D" parent="egattes/egatte2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="egattes/egatte2/Area2D"]
+shape = SubResource( 1 )
+
+[node name="egatte3" type="Sprite" parent="egattes"]
+position = Vector2( 193.214, 194.884 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 5 )
+hframes = 9
+
+[node name="Area2D" type="Area2D" parent="egattes/egatte3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="egattes/egatte3/Area2D"]
+shape = SubResource( 1 )
+
+[node name="egatte4" type="Sprite" parent="egattes"]
+position = Vector2( 287.714, 194.884 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 5 )
+hframes = 9
+frame = 2
+
+[node name="Area2D" type="Area2D" parent="egattes/egatte4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="egattes/egatte4/Area2D"]
+shape = SubResource( 1 )
+
+[node name="egatte5" type="Sprite" parent="egattes"]
+position = Vector2( 391.214, 197.134 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 5 )
+hframes = 9
+frame = 5
+
+[node name="Area2D" type="Area2D" parent="egattes/egatte5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="egattes/egatte5/Area2D"]
+shape = SubResource( 1 )
+
+[node name="egatte6" type="Sprite" parent="egattes"]
+position = Vector2( 341.714, 138.634 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 5 )
+hframes = 9
+frame = 8
+
+[node name="Area2D" type="Area2D" parent="egattes/egatte6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="egattes/egatte6/Area2D"]
+shape = SubResource( 1 )
+
+[node name="actor" type="Sprite" parent="."]
+position = Vector2( 280.964, 854.134 )
+texture = ExtResource( 5 )
+hframes = 9
+script = ExtResource( 6 )
+
+[node name="Area2D" type="Area2D" parent="actor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="actor/Area2D"]
+shape = SubResource( 1 )
+
+[node name="Button" type="Button" parent="actor"]
+self_modulate = Color( 1, 1, 1, 0.27451 )
+margin_left = -41.5
+margin_top = -40.9999
+margin_right = 41.5
+margin_bottom = 39.0001
+
+[connection signal="mouse_entered" from="egattes/egatte1/Area2D" to="egattes/egatte1" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="egattes/egatte1/Area2D" to="egattes/egatte1" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="egattes/egatte2/Area2D" to="egattes/egatte2" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="egattes/egatte2/Area2D" to="egattes/egatte2" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="egattes/egatte3/Area2D" to="egattes/egatte3" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="egattes/egatte3/Area2D" to="egattes/egatte3" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="egattes/egatte4/Area2D" to="egattes/egatte4" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="egattes/egatte4/Area2D" to="egattes/egatte4" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="egattes/egatte5/Area2D" to="egattes/egatte5" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="egattes/egatte5/Area2D" to="egattes/egatte5" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="egattes/egatte6/Area2D" to="egattes/egatte6" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="egattes/egatte6/Area2D" to="egattes/egatte6" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="actor/Area2D" to="actor" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="actor/Area2D" to="actor" method="_on_Area2D_mouse_exited"]
+[connection signal="button_down" from="actor/Button" to="actor" method="_on_Button_button_down"]
+[connection signal="button_up" from="actor/Button" to="actor" method="_on_Button_button_up"]
