@@ -1,6 +1,12 @@
-extends Sprite
+extends KinematicBody2D
 
 var mouseIn = false
+var launched = false
+
+var initPos = Vector2(292 , 840)
+var motion = Vector2()
+
+var speed = 0.9
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -12,6 +18,18 @@ func _process(delta):
 	# Você precisa criar uma ação chamada click(botão esquerdo do mouse) no input map do seu projeto
 	if(mouseIn && Input.is_action_pressed("click")):
 		set_position(get_viewport().get_mouse_position())
+		motion = get_viewport().get_mouse_position()
+	if launched :
+		var propulsion = motion - initPos
+		if propulsion.y < 0 :
+			propulsion.y = 50
+		
+		propulsion.x = -propulsion.x
+		propulsion.y = -propulsion.y
+		
+		move_and_collide(propulsion * speed)
+		
+		
 	pass
 
 
@@ -28,11 +46,18 @@ func _process(delta):
 
 func _on_Button_button_down():
 	mouseIn = true
+	launched = false
 	print_debug("pinched")
 	pass # Replace with function body.
 
 
 func _on_Button_button_up():
 	mouseIn = false
+	launched = true
 	print_debug("launched")
+	
+	var tween = get_node("tween")
+	tween.interpolate_property($actorSprite , "scale:y" , 1 ,  0.5 , 1 , Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.start()
+	#	print_debug(motion - initPos)
 	pass # Replace with function body.
