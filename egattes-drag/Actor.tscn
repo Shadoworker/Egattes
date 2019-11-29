@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://actor.gd" type="Script" id=1]
+[ext_resource path="res://assets/egattes.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 44.092
+
+[node name="Actor" type="Node2D"]
+position = Vector2( -1.5, -1.49991 )
+
+[node name="actor" type="KinematicBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( -1.49991, 1.50037 )
+script = ExtResource( 1 )
+
+[node name="actorCollision" type="CollisionShape2D" parent="actor"]
+position = Vector2( -1.00024, -0.000183105 )
+shape = SubResource( 1 )
+
+[node name="actorSprite" type="Sprite" parent="actor"]
+position = Vector2( -1.03583, -1.24097 )
+texture = ExtResource( 2 )
+hframes = 9
+
+[node name="Button" type="Button" parent="actor/actorSprite"]
+self_modulate = Color( 1, 1, 1, 0.27451 )
+margin_left = -41.5
+margin_top = -39.4998
+margin_right = 41.5
+margin_bottom = 40.5002
+
+[node name="tween" type="Tween" parent="actor"]
+
+[connection signal="button_down" from="actor/actorSprite/Button" to="actor" method="_on_Button_button_down"]
+[connection signal="button_up" from="actor/actorSprite/Button" to="actor" method="_on_Button_button_up"]
